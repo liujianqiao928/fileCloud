@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="cust_cloud:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/cust_cloud_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="cust_cloud/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="cust_cloud" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

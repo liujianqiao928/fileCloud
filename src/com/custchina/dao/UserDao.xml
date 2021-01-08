@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.custchina.dao.UserDao" >
+    <!-- 查询用户 -->
+    <select id="findUser" parameterType="String" resultType="user">
+	    select *
+	    from sys_user
+	    where user_code = #{usercode}
+	    and user_password =#{password}
+	   	and user_state = '1'
+	   
+    </select>
+    <insert id="addUser" parameterType="com.custchina.pojo.User">
+       insert into 
+       sys_user(user_code,user_email,user_password,user_state)
+       value(#{usercode},#{email},#{password},#{state})
+    </insert>
+      <update id="updateUser" parameterType="com.custchina.pojo.User">
+    update sys_user
+    <set>
+      <if test="password != null">
+        user_password = #{password},
+      </if>
+     
+    </set>
+    where user_code = #{usercode}
+  </update>
+</mapper>

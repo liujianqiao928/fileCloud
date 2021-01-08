@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.custchina.dao.FileMapper">
+  <resultMap id="BaseResultMap" type="com.custchina.pojo.File">
+    <id column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="file_size" jdbcType="INTEGER" property="fileSize" />
+    <result column="file_uptime" jdbcType="TIMESTAMP" property="fileUptime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    file_id, file_name, file_type, file_size, file_uptime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from file
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from file
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.custchina.pojo.File">
+    insert into file (file_id, file_name, file_type, 
+      file_size, file_uptime)
+    values (#{fileId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{fileType,jdbcType=VARCHAR}, 
+      #{fileSize,jdbcType=INTEGER}, #{fileUptime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.custchina.pojo.File">
+    insert into file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="fileType != null">
+        file_type,
+      </if>
+      <if test="fileSize != null">
+        file_size,
+      </if>
+      <if test="fileUptime != null">
+        file_uptime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=INTEGER},
+      </if>
+      <if test="fileUptime != null">
+        #{fileUptime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.custchina.pojo.File">
+    update file
+    <set>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        file_type = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        file_size = #{fileSize,jdbcType=INTEGER},
+      </if>
+      <if test="fileUptime != null">
+        file_uptime = #{fileUptime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.custchina.pojo.File">
+    update file
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=VARCHAR},
+      file_size = #{fileSize,jdbcType=INTEGER},
+      file_uptime = #{fileUptime,jdbcType=TIMESTAMP}
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </update>
+</mapper>

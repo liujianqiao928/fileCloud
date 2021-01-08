@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.custchina.dao.FileDao" >
+<resultMap id="BaseResultMap" type="com.custchina.pojo.Fileos">
+    <id column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="file_size" jdbcType="INTEGER" property="fileSize" />
+    <result column="file_uptime" jdbcType="VARCHAR" property="fileUptime" />
+  </resultMap>
+<insert id="addFile" parameterType="com.custchina.pojo.Fileos">
+	insert into
+	file(file_name,file_type,file_size,file_uptime,imgs)
+	value(#{filename},#{filetype},#{filesize},#{fileuptime},#{imgs})
+
+</insert>
+<select id="findAll" resultMap="BaseResultMap" >
+		SELECT * FROM file
+</select>
+<select id="findOne" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT * FROM file where file_type=#{fileType}
+</select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from file
+    where file_id = #{fileId}
+  </delete>
+</mapper>
